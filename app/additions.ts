@@ -1,0 +1,268 @@
+import type { Work } from './data';
+
+// Datas e durações identificam a obra, não uma gravação específica.
+export const additionalWorks: Work[] = [
+  {
+    id: 'rachmaninoff',
+    title: 'Danças sinfônicas',
+    composer: 'Sergei Rachmaninoff',
+    original: 'Сергей Рахманинов',
+    year: 1940,
+    region: 'Rússia · diáspora nos EUA',
+    duration: 37,
+    tags: ['Memória', 'Ritmo', 'Orquestra'],
+    color: '#d8bf96',
+    invitation: 'Uma dança pode carregar a distância de uma vida inteira.',
+    context:
+      'Compostas em 1940 nos Estados Unidos, as três Danças sinfônicas pertencem à fase emigrada de Rachmaninoff. Ritmo, cor instrumental e referências musicais do passado permitem investigar uma modernidade que não abandona a tonalidade. A diáspora faz parte do recorte europeu, sem apagar o lugar americano da composição.',
+    listen: [
+      'Procure a mudança de cor quando o saxofone aparece.',
+      'Compare a pulsação dos três movimentos antes de procurar um programa.',
+      'Observe se um retorno musical conserva o mesmo peso emocional.',
+    ],
+    question: 'Uma linguagem familiar pode produzir estranhamento?',
+    source: 'https://www.bso.org/works/rachmaninoff-symphonic-dances',
+  },
+  {
+    id: 'roslavets',
+    title: 'Concerto para violino nº 1',
+    composer: 'Nikolai Roslavets',
+    original: 'Николай Рославец',
+    year: 1925,
+    region: 'União Soviética',
+    duration: 45,
+    tags: ['Harmonia', 'Violino', 'Modernismo'],
+    color: '#bea9dc',
+    invitation: 'Siga uma linha que encontra caminhos sem oferecer atalhos.',
+    context:
+      'O concerto de 1925 amplia o panorama das experiências soviéticas dos anos 1920 para além da imagem da máquina. Seus três movimentos permitem acompanhar o violino em uma linguagem harmônica densa. As datas da redução para piano e da edição orquestral são posteriores à composição e não devem ser confundidas com ela.',
+    listen: [
+      'Siga primeiro o contorno do violino, sem tentar nomear acordes.',
+      'Compare a sustentação das frases no movimento lento e nos externos.',
+      'Escute quando a orquestra abre espaço e quando envolve o solista.',
+    ],
+    question:
+      'Que sinal substitui uma cadência familiar na sua percepção de chegada?',
+    source: 'https://www.schott-music.com/en/1st-violin-concerto-no38357.html',
+  },
+  {
+    id: 'denisov',
+    title: 'O sol dos incas',
+    composer: 'Edison Denisov',
+    original: 'Эдисон Денисов',
+    year: 1964,
+    region: 'União Soviética',
+    duration: 21,
+    tags: ['Voz', 'Timbre', 'Câmara'],
+    color: '#deb18d',
+    invitation:
+      'A voz encontra um espaço feito de pequenas luzes instrumentais.',
+    context:
+      'Ciclo vocal de 1964 sobre poemas de Gabriela Mistral, dedicado a Pierre Boulez. A obra aproxima experimentação soviética, interlocução europeia e poesia chilena: uma rede cultural não cabe em uma única nacionalidade. Texto, voz e conjunto oferecem diferentes pontos de entrada.',
+    listen: [
+      'Perceba quais instrumentos continuam um gesto da voz.',
+      'Compare episódios vocais e instrumentais.',
+      'Reouça um trecho com o texto e outro sem consultar palavras.',
+    ],
+    question: 'Você acompanha melhor o texto ou a circulação de cores?',
+    source: 'https://brahms.ircam.fr/en/work/le-soleil-des-incas',
+  },
+  {
+    id: 'weinberg',
+    title: 'Sinfonia nº 21 — Kaddish',
+    composer: 'Mieczysław Weinberg',
+    original: 'Mieczysław Weinberg · Мечислав Вайнберг',
+    year: 1991,
+    region: 'Polônia · União Soviética',
+    duration: 55,
+    tags: ['Memória', 'Orquestra', 'Contraste'],
+    color: '#c9b599',
+    invitation: 'Escutar uma memória sem pretender falar por ela.',
+    context:
+      'Concluída em 1991, a Sinfonia nº 21 situa a memória da destruição do mundo judaico de Varsóvia no horizonte da escuta. Weinberg foi um compositor judeu polonês que desenvolveu grande parte da carreira na União Soviética. Sua inclusão não o transforma em sinônimo de uma identidade russa.',
+    listen: [
+      'Divida a sessão em etapas, preservando depois uma escuta contínua.',
+      'Anote as mudanças entre exposição individual e massa orquestral.',
+      'Observe como você reconhece um retorno após um intervalo longo.',
+    ],
+    question:
+      'O que a música permite perceber sem traduzir a história em um enredo?',
+    source:
+      'https://www.music-weinberg.net/music-commentary-works-list-scores.html',
+  },
+  {
+    id: 'shchedrin',
+    title: 'Carmen Suite',
+    composer: 'Rodion Shchedrin',
+    original: 'Родион Щедрин',
+    year: 1967,
+    region: 'União Soviética',
+    duration: 46,
+    tags: ['Ritmo', 'Timbre', 'Memória'],
+    color: '#de9f8b',
+    invitation: 'Reconhecer uma melodia não significa já conhecer o som.',
+    context:
+      'Balé de 1967 elaborado por Shchedrin a partir de música de Georges Bizet, para cordas e percussão. A mudança de instrumentação transforma materiais familiares em outra experiência teatral. A autoria da adaptação e a procedência dos temas devem permanecer visíveis lado a lado.',
+    listen: [
+      'Compare uma passagem com o trecho correspondente da ópera de Bizet.',
+      'Separe o ritmo da melodia e observe quem o sustenta.',
+      'Escute a percussão como agente de articulação, não apenas de volume.',
+    ],
+    question: 'Quanto uma nova cor modifica o sentido de algo reconhecível?',
+    source:
+      'https://www.boosey.com/cr/music/Rodion-Shchedrin-Carmen-Suite/7171',
+  },
+  {
+    id: 'tarnopolski',
+    title: 'O pêndulo de Foucault',
+    composer: 'Vladimir Tarnopolski',
+    original: 'Владимир Тарнопольский · Vladimir Tarnopolski',
+    year: 2004,
+    region: 'Ucrânia · Rússia · Países Baixos',
+    duration: 25,
+    tags: ['Ritmo', 'Timbre', 'Câmara'],
+    color: '#a2c4bc',
+    invitation: 'Do som que respira ao tempo que se deixa contar.',
+    context:
+      'Obra de 2004 encomendada pelo Schönberg Ensemble, com estreia em Amsterdã. Tarnopolski nasceu na atual Ucrânia e desenvolveu sua formação e atuação composicional em Moscou. A peça aproxima processos de pulsação, timbre e tempo; as referências geográficas registram trajetórias, não uma nacionalidade única.',
+    listen: [
+      'Procure a passagem entre movimento livre e pulsação reconhecível.',
+      'Escute batimentos internos antes de marcar o ritmo com a mão.',
+      'Observe se uma regularidade nova faz o início parecer diferente na memória.',
+    ],
+    question: 'Em que momento uma transformação de timbre se torna um ritmo?',
+    source: 'https://tarnopolski.ru/works',
+  },
+  {
+    id: 'auerbach',
+    title: 'Icarus',
+    composer: 'Lera Auerbach',
+    original: 'Лера Авербах',
+    year: 2011,
+    region: 'Rússia · diáspora · Suíça',
+    duration: 12,
+    tags: ['Timbre', 'Orquestra', 'Contraste'],
+    color: '#e0bc90',
+    invitation: 'Entre impulso e queda, escute o que o título não explica.',
+    context:
+      'O catálogo data Icarus de 2006/2011: o material se relaciona à primeira sinfonia, e a versão independente estreou em Verbier em 2011. Esta página usa 2011 como referência de circulação da peça autônoma. O mito orienta uma possível leitura, sem fixar um roteiro obrigatório.',
+    listen: [
+      'Acompanhe a direção dos registros antes de imaginar uma narrativa.',
+      'Observe os contrastes entre brilho, peso e transparência.',
+      'Compare sua descrição antes e depois de ler o título.',
+    ],
+    question: 'Você ouviria voo e queda se não soubesse o nome da obra?',
+    source: 'https://www.boosey.com/cr/music/Lera-Auerbach-Icarus/105374',
+  },
+  {
+    id: 'silvestrov',
+    title: 'Canções silenciosas',
+    composer: 'Valentyn Silvestrov',
+    original: 'Валентин Сильвестров · Valentin Silvestrov',
+    year: 1977,
+    region: 'Ucrânia · União Soviética',
+    duration: 110,
+    tags: ['Voz', 'Silêncio', 'Memória'],
+    color: '#b9cba6',
+    invitation: 'Uma canção pode soar como lembrança de outra canção.',
+    context:
+      'Ciclo de 24 canções para voz e piano composto entre 1974 e 1977, por um compositor ucraniano. O tempo de cerca de 110 minutos corresponde ao conjunto: comece por poucas canções. A diversidade dos poetas não deve apagar a identidade do autor nem ser confundida com uma suposta voz nacional única.',
+    listen: [
+      'Escolha duas canções e deixe um intervalo de silêncio entre elas.',
+      'Perceba o piano antes da entrada e depois da saída da voz.',
+      'Observe se o canto parece apresentar algo novo ou recordar algo conhecido.',
+    ],
+    question: 'O que distingue delicadeza de ausência de tensão?',
+    source: 'https://schottmusiclondon.com/stille-lieder-noc318658.html',
+  },
+  {
+    id: 'bartok',
+    title: 'Música para cordas, percussão e celesta',
+    composer: 'Béla Bartók',
+    original: 'Bartók Béla',
+    year: 1936,
+    region: 'Hungria · Suíça',
+    duration: 27,
+    tags: ['Ritmo', 'Timbre', 'Orquestra'],
+    color: '#c6bd8c',
+    invitation: 'O espaço entre os instrumentos também faz parte da música.',
+    context:
+      'Composta em 1936 por encomenda de Paul Sacher, a obra distribui as cordas em dois grupos, em relação com percussão, piano, harpa e celesta. Os quatro movimentos permitem comparar contraponto, energia rítmica e sonoridades noturnas. Uma ponte centro-europeia para escutar estrutura e cor juntas.',
+    listen: [
+      'No início, acompanhe como uma ideia passa de uma voz a outra.',
+      'Compare os movimentos rápidos com a atmosfera do terceiro.',
+      'Procure relações entre disposição espacial e resposta instrumental.',
+    ],
+    question:
+      'Você percebe o conjunto como uma massa ou como grupos em diálogo?',
+    source:
+      'https://www.laphil.com/works/music-for-strings-percussion-and-celesta',
+  },
+  {
+    id: 'messiaen',
+    title: 'Quarteto para o fim do tempo',
+    composer: 'Olivier Messiaen',
+    original: 'Olivier Messiaen',
+    year: 1941,
+    region: 'França · Alemanha (cativeiro)',
+    duration: 50,
+    tags: ['Tempo', 'Câmara', 'Espiritualidade'],
+    color: '#a9b9dc',
+    invitation: 'O tempo do relógio e o tempo da escuta podem se afastar.',
+    context:
+      'Composto em 1940–1941 e estreado no campo de prisioneiros Stalag VIII A em janeiro de 1941. Os oito movimentos usam combinações de clarinete, violino, violoncelo e piano. A referência religiosa ao Apocalipse e a condição de cativeiro iluminam a obra, mas não substituem a escuta de suas diferentes temporalidades.',
+    listen: [
+      'Compare a sensação de duração de um solo e de um movimento coletivo.',
+      'Observe o contraste entre sustentação longa e gesto incisivo.',
+      'Experimente ouvir sem acompanhar o relógio do reprodutor.',
+    ],
+    question:
+      'O que faz um momento parecer suspenso mesmo quando há movimento?',
+    source:
+      'https://pad.philharmoniedeparis.fr/pad/doc/CIMU/0751139/quatuor-pour-la-fin-du-temps?_lg=fr-FR',
+  },
+  {
+    id: 'saariaho',
+    title: 'Laterna Magica',
+    composer: 'Kaija Saariaho',
+    original: 'Kaija Saariaho',
+    year: 2008,
+    region: 'Finlândia · França · Alemanha',
+    duration: 20,
+    tags: ['Timbre', 'Tempo', 'Orquestra'],
+    color: '#a6c6c4',
+    invitation: 'Imagine que a luz muda antes de a paisagem mudar.',
+    context:
+      'Composta em 2008, com estreia em Berlim em 2009, Laterna Magica toma seu título da autobiografia de Ingmar Bergman. Saariaho usa a orquestra como campo de transformação. A ligação com o cinema oferece uma pergunta sobre percepção do tempo, não uma equivalência literal entre imagens e sons.',
+    listen: [
+      'Observe se a mudança de cor antecede a mudança de intensidade.',
+      'Compare trechos de maior mobilidade com passagens suspensas.',
+      'Descreva uma transição sem recorrer ao nome de uma emoção.',
+    ],
+    question:
+      'É possível ouvir uma mudança de velocidade sem um pulso constante?',
+    source: 'https://www.wisemusicclassical.com/work/36681/',
+  },
+  {
+    id: 'saunders',
+    title: 'Skin',
+    composer: 'Rebecca Saunders',
+    original: 'Rebecca Saunders',
+    year: 2016,
+    region: 'Reino Unido · Alemanha',
+    duration: 25,
+    tags: ['Voz', 'Timbre', 'Câmara'],
+    color: '#d6b2c1',
+    invitation:
+      'Na fronteira entre voz e instrumento, procure a superfície do som.',
+    context:
+      'Obra de 2015–2016 para soprano e treze instrumentistas, estreada em Donaueschingen em outubro de 2016. A compositora britânica, radicada em Berlim, amplia o eixo europeu contemporâneo. A voz pode ser ouvida tanto como portadora de palavras quanto como presença sonora em relação ao conjunto.',
+    listen: [
+      'Escute as fronteiras entre respiração, ataque e som sustentado.',
+      'Observe quando a voz se distingue e quando parece integrar a textura.',
+      'Reouça um trecho concentrando-se apenas no início e no fim dos sons.',
+    ],
+    question: 'Quando deixa de fazer sentido separar voz e acompanhamento?',
+    source: 'https://www.rebeccasaunders.net/skin',
+  },
+];
