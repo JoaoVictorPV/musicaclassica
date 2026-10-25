@@ -35,7 +35,11 @@ O servidor local abre em `http://127.0.0.1:4173`. Não o exponha como servidor p
 
 ## Hospedagem
 
-A Vercel pode importar este repositório: `npm run build`, pasta de saída `dist`. Os arquivos gerados também são compatíveis com GitHub Pages; o caminho base é relativo e a navegação usa fragmentos de URL. **Enviar código ao GitHub não ativa automaticamente o GitHub Pages.** O workflow incluído executa verificações e disponibiliza o build como artefato; não faz deploy público.
+Site público: **https://joaovictorpv.github.io/musicaclassica/**.
+
+O workflow `.github/workflows/pages.yml` testa, compila e publica somente a pasta `dist` a cada envio para `main`. Em **Settings → Pages → Build and deployment**, a origem deve ser **GitHub Actions**, não a pasta raiz da branch. Publicar o `index.html` do código-fonte diretamente causa uma página em branco, pois o navegador não executa os arquivos TypeScript sem compilação.
+
+O caminho base é relativo e a navegação usa fragmentos de URL, compatíveis com o subdiretório do GitHub Pages. O workflow `check.yml` mantém as verificações independentes, inclusive para pull requests. A Vercel também pode importar este repositório: `npm run build`, pasta de saída `dist`.
 
 ## Persistência e privacidade
 
