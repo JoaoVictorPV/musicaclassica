@@ -1,4 +1,6 @@
-# Constelação — Atlas de escuta
+# Acervo Clássico — Atlas de escuta
+
+Nome anterior: Constelação. O inicializador portátil antigo conserva seu nome de arquivo por compatibilidade; o site publicado e este código usam a nova identidade. A atualização do GitHub não atualiza automaticamente uma cópia portátil já baixada.
 
 ## Abrir o site
 
@@ -12,16 +14,16 @@ Se a porta 4173 estiver ocupada, encerre a outra instância que a utiliza e abra
 
 ## O que funciona nesta edição
 
-- 24 obras de 24 autores, cada uma com cinco camadas de contexto, perguntas próprias de escuta e fontes documentais.
+- 36 obras de 36 autores, cada uma com cinco camadas de contexto, perguntas próprias de escuta e fontes documentais.
 - Busca por títulos, conceitos, nomes latinos e nomes em cirílico.
 - Filtros de linguagem e foco geográfico.
-- Quatro percursos com progresso declarado pelo usuário.
+- Oito percursos com progresso declarado, perguntas e retomada na próxima obra.
 - Reprodutor YouTube, com escolha de vídeo, posição, pausa e marcação de instante.
 - Diário: criar, editar, pesquisar, exportar e importar notas.
 - Gosto, familiaridade e compreensão registrados separadamente.
-- Atlas interativo por vizinhança, seletor das 24 obras, cronologia e comparação de obras.
+- Atlas interativo por vizinhança, seletor das 36 obras, 44 relações, cronologia e comparação de obras.
 - Coleção pessoal e marcação para revisão.
-- Laboratório com quatro exemplos sintetizados: ostinato, polirritmia, timbre e motivo.
+- Laboratório com seis experiências A/B ajustáveis e os quatro exemplos anteriores de ostinato, polirritmia, timbre e motivo.
 - Interface responsiva com navegação por teclado.
 
 ## Reprodução e internet
@@ -36,7 +38,7 @@ Anotações e progresso são salvos no armazenamento local do navegador, no ende
 
 ## Limites desta edição
 
-O corpus cobre os séculos XX e XXI. Os textos ampliados distinguem contexto documentado e propostas editoriais de escuta, mas não constituem revisão musicológica independente. O guia socrático utiliza perguntas escritas: **não há modelo de IA conectado**. O progresso é autodeclarado; não equivale a uma avaliação objetiva de domínio. Os lembretes de revisão aparecem ao retornar ao site; não enviam notificações. O conteúdo é uma edição fixa, não uma atualização automática de notícias ou novas obras.
+O corpus cobre os séculos XIX a XXI. Os textos ampliados distinguem contexto documentado e propostas editoriais de escuta, mas não constituem revisão musicológica independente. O guia socrático utiliza perguntas escritas: **não há modelo de IA conectado**. O progresso é autodeclarado; não equivale a uma avaliação objetiva de domínio. Os lembretes de revisão aparecem ao retornar ao site; não enviam notificações. O conteúdo é uma edição fixa, não uma atualização automática de notícias ou novas obras.
 
 Supabase, login e sincronização na nuvem ainda não estão conectados. Não coloque chaves secretas no código do navegador. O produto completo do planejamento original exige etapas adicionais de conteúdo, backend e tutoria.
 
@@ -55,7 +57,7 @@ A aplicação usa React, TypeScript e Vite, com componentes acessíveis Base UI.
 
 ## Publicar futuramente na Vercel
 
-Importe o repositório na Vercel. O arquivo `vercel.json` define o build `npm run build` e a pasta `dist`. O envio do código ao GitHub não publica automaticamente o site. Na nova origem, importe um backup para transferir suas anotações locais. `node_modules`, runtime, executáveis e dados pessoais não devem ser versionados.
+Importe o repositório na Vercel. O arquivo `vercel.json` define o build `npm run build` e a pasta `dist`. Neste repositório, o GitHub Pages já publica automaticamente os envios à branch main pelo workflow de publicação. Na nova origem, importe um backup para transferir suas anotações locais. `node_modules`, runtime, executáveis e dados pessoais não devem ser versionados.
 
 ## Recompilar o inicializador
 

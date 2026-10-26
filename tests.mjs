@@ -17,10 +17,28 @@ try {
   );
   const { graphNeighborhood } = await server.ssrLoadModule('/app/graph.ts');
   const ids = new Set(works.map((w) => w.id));
-  assert.equal(works.length, 24);
-  assert.equal(ids.size, 24);
-  assert.equal(paths.length, 4);
-  assert.equal(new Set(works.map((w) => w.composer)).size, 24);
+  const { experiments, makeSequence, default: SonicLab } = await server.ssrLoadModule('/app/SonicLab.tsx');
+  const { pathwayQuestions } = await server.ssrLoadModule('/app/journeys.ts');
+  assert.equal(experiments.length, 6);
+  for (const experiment of experiments) {
+    for (const id of experiment.works) assert.ok(ids.has(id));
+    for (const variant of ['a', 'b']) {
+      const events = makeSequence(experiment.id, variant);
+      assert.ok(events.length > 0);
+      for (const event of events) {
+        assert.ok(event.midi >= 21 && event.midi <= 108);
+        assert.ok(event.beat >= 0 && event.length > 0);
+        assert.ok(event.level > 0 && event.level <= 1);
+      }
+    }
+    assert.notDeepEqual(makeSequence(experiment.id, 'a'), makeSequence(experiment.id, 'b'));
+  }
+  assert.ok(renderToString(React.createElement(SonicLab, {open: () => {}})).includes('Velocidade'));
+  for (const path of paths) assert.equal(pathwayQuestions[path.id].length, 3);
+  assert.equal(works.length, 36);
+  assert.equal(ids.size, 36);
+  assert.equal(paths.length, 8);
+  assert.equal(new Set(works.map((w) => w.composer)).size, 36);
   assert.deepEqual(Object.keys(dossiers).sort(), [...ids].sort());
   assert.ok(
     works.some((w) => w.year > 2000),
@@ -127,10 +145,12 @@ try {
   assert.ok(!validBackup({ ...backup, notes: [{ ...note, date: 'invalid' }] }));
   const html = renderToString(React.createElement(App));
   assert.ok(html.includes('Iniciar escuta guiada'));
+  assert.ok(html.includes('Acervo Clássico'));
+  assert.ok(validBackup({ ...backup, last: 'boulanger', progress: { boulanger: {heard: true} } }));
   assert.ok(html.includes('A sagração da primavera'));
   assert.ok(!html.includes('Building your site'));
   console.log(
-    `PASS: 24 works / 24 composers; ${totalWords} words across all 24 context dossiers; pathway coverage, graph neighborhoods, sources, legacy and expanded backups, all context renders and initial React render.`,
+    `PASS: 36 works / 36 composers; ${totalWords} words across all 36 context dossiers; pathway coverage, graph neighborhoods, sources, legacy and expanded backups, all context renders and initial React render.`,
   );
 } finally {
   await server.close();

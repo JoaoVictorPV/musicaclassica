@@ -45,6 +45,9 @@ import {
 import { works, paths, concepts, connections, type Work } from './data';
 import WorkContext from './WorkContext';
 import { graphNeighborhood } from './graph';
+import SonicLab from './SonicLab';
+import { pathwayQuestions } from './journeys';
+import ResonanceArt from './ResonanceArt';
 type Note = {
   id: string;
   workId: string;
@@ -197,16 +200,12 @@ function Mark({ small = false }: { small?: boolean }) {
       fill="none"
       aria-hidden="true"
     >
-      <path d="M7 31L20 5L37 24L7 31L28 39L37 24" stroke="currentColor" />
-      <circle cx="7" cy="31" r="3" fill="currentColor" />
-      <circle cx="20" cy="5" r="3" fill="currentColor" />
-      <circle cx="37" cy="24" r="3" fill="currentColor" />
-      <circle cx="28" cy="39" r="2" fill="currentColor" />
+      <path d="M6 35V21a16 16 0 0 1 32 0v14M12 35V21a10 10 0 0 1 20 0v14M18 35V21a4 4 0 0 1 8 0v14M4 39h36" stroke="currentColor" strokeWidth="2" />
     </svg>
   );
 }
 function SoundLines({
-  color = '#bde790',
+  color = '#ff783b',
   large = false,
 }: {
   color?: string;
@@ -622,7 +621,7 @@ export default function App() {
         `${w.title} ${w.composer} ${w.original} ${w.tags.join(' ')}`,
       ).includes(normalize(query)) &&
       (filter === 'Todas as linguagens' || w.tags.includes(filter)) &&
-      (region === 'Toda a Europa' || /Rússia|Russo|Soviética/.test(w.region)),
+      (region === 'Toda a Europa' || (region === 'França e conexões' ? /França/.test(w.region) : /Rússia|Russo|Soviética/.test(w.region))),
   );
   const recommendation =
     works.find((w) => !store.progress[w.id]?.heard) || works[0];
@@ -641,6 +640,7 @@ export default function App() {
     />
   );
   const synth = async (kind: string) => {
+    window.dispatchEvent(new Event('acervo:audio-start'));
     await audioRef.current?.close();
     const ctx = new AudioContext();
     audioRef.current = ctx;
@@ -696,12 +696,16 @@ export default function App() {
       }
     }, 6500);
   };
-  useEffect(
-    () => () => {
-      void audioRef.current?.close();
-    },
-    [],
-  );
+  useEffect(() => {
+    const stop = () => {
+      const ctx = audioRef.current;
+      audioRef.current = null;
+      if (ctx && ctx.state !== 'closed') void ctx.close().catch(() => {});
+      setLab('');
+    };
+    window.addEventListener('acervo:audio-start', stop);
+    return () => { window.removeEventListener('acervo:audio-start', stop); stop(); };
+  }, [view]);
   return (
     <div className="app-shell">
       <a className="skip" href="#content">
@@ -711,7 +715,7 @@ export default function App() {
         <a className="brand" href="#agora" onClick={() => go('agora')}>
           <Mark />
           <span>
-            constelação<span className="brand-caption">ATLAS DE ESCUTA</span>
+            Acervo Clássico<span className="brand-caption">OUVIR. DESCOBRIR. APROFUNDAR.</span>
           </span>
         </a>
         <nav aria-label="Navegação principal">
@@ -720,6 +724,7 @@ export default function App() {
             ['explorar', 'Explorar'],
             ['percursos', 'Percursos'],
             ['atlas', 'Atlas'],
+            ['laboratorio', 'Laboratório'],
             ['diario', 'Diário'],
           ].map(([v, label]) => (
             <button
@@ -759,25 +764,24 @@ export default function App() {
               <span>
                 <span className="status-dot" /> SEU ESPAÇO DE EXPLORAÇÃO MUSICAL
               </span>
-              <span>EUROPA · SÉCULOS XX & XXI</span>
+              <span>EUROPA & DIÁSPORAS · SÉCULOS XIX–XXI</span>
             </div>
             <div className="welcome">
               <div>
                 <h1>
-                  Um novo jeito
+                  A música permanece.
                   <br />
-                  de <em>escutar o mundo.</em>
+                  <em>Seu ouvido se transforma.</em>
                 </h1>
                 <p>
-                  Entre por uma obra. Descubra as relações.
+                  Da Rússia à França, um acervo de encontros.
                   <br />
-                  Construa seu próprio ouvido.
+                  Escute de perto. Descubra o que ainda não ouviu.
                 </p>
               </div>
-              <button className="link-button" onClick={() => go('minha')}>
-                Minha constelação <ArrowUpRight size={18} />
-              </button>
+              <ResonanceArt />
             </div>
+            <div className="acervo-strip"><span><strong>{works.length}</strong> obras · {works.length} autores</span><span><strong>{paths.length}</strong> percursos de descoberta</span><span><strong>06</strong> experiências A/B</span><button className="link-button" onClick={() => go('minha')}>Meu acervo <ArrowUpRight size={17}/></button></div>
             {(store.notes.length > 0 || heard > 0) && (
               <div className="return-strip">
                 <button
@@ -843,17 +847,17 @@ export default function App() {
               <aside className="path-teaser">
                 <span className="eyebrow">PERCURSO EM DESTAQUE</span>
                 <span className="path-number">
-                  01<span> / 04</span>
+                  01<span> / {String(paths.length).padStart(2, '0')}</span>
                 </span>
                 <h2>
-                  Uma escuta
+                  A França em
                   <br />
-                  <em>russa.</em>
+                  <em>muitas cores.</em>
                 </h2>
                 <p>
-                  Ruptura, poder e interioridade.
+                  Uma nova ala do seu acervo.
                   <br />
-                  De Scriabin à diáspora contemporânea.
+                  De Berlioz às invenções do século XX.
                 </p>
                 <div className="mini-timeline">
                   <i />
@@ -865,12 +869,12 @@ export default function App() {
                   <i />
                 </div>
                 <div className="between">
-                  <span>{paths[0].ids.length} obras · séculos XX e XXI</span>
+                  <span>{paths[0].ids.length} obras · escuta orientada</span>
                   <button
                     className="round"
-                    aria-label="Abrir percurso Uma escuta russa"
+                    aria-label="Abrir percurso A França em muitas cores"
                     onClick={() => {
-                      setActivePath('russo');
+                      setActivePath('frances');
                       go('percursos');
                     }}
                   >
@@ -881,15 +885,15 @@ export default function App() {
             </div>
             <div className="section-heading">
               <div>
-                <span className="eyebrow">CONEXÕES QUE AMPLIAM O OUVIDO</span>
-                <h2>Uma obra abre outra.</h2>
+                <span className="eyebrow">NOVAS ENTRADAS · EDIÇÃO FRANCESA</span>
+                <h2>Outras cores. Novas perguntas.</h2>
               </div>
               <button className="link-button" onClick={() => go('explorar')}>
                 Explorar o repertório <ArrowRight size={18} />
               </button>
             </div>
             <div className="work-grid">
-              {[works[1], works[6], works[10], works[5]].map(card)}
+              {['ravel', 'boulanger', 'poulenc', 'tailleferre'].map(id => card(find(id)))}
             </div>
             <div className="question-strip">
               <span className="round">
@@ -912,7 +916,7 @@ export default function App() {
             <PageTitle
               kicker="O CORPUS VIVO"
               title="Encontre sua próxima escuta."
-              text={`${works.length} obras · ${new Set(works.map((w) => w.composer)).size} compositores e compositoras. Europa e diásporas, com atenção especial às tradições russas e aos contextos soviéticos.`}
+              text={`${works.length} obras · ${new Set(works.map((w) => w.composer)).size} compositores e compositoras. Europa e diásporas, com núcleos russos e franceses: trajetórias distintas, escutas em diálogo.`}
             />
             <div className="filters">
               <label className="search-box">
@@ -937,7 +941,7 @@ export default function App() {
                 label="Filtrar região"
                 value={region}
                 onChange={setRegion}
-                items={['Toda a Europa', 'Circuitos russos e soviéticos']}
+                items={['Toda a Europa', 'Circuitos russos e soviéticos', 'França e conexões']}
               />
             </div>
             <div className="between muted">
@@ -961,9 +965,9 @@ export default function App() {
               />
             )}
             <div className="notice">
-              Corpus piloto do século XX. O repertório do século XXI será
-              acrescentado após curadoria; esta edição não pretende cobrir todo
-              o atlas planejado.
+              Acervo curado dos séculos XIX a XXI, com núcleos russos e
+              franceses. Cada entrada oferece contexto, perguntas e fontes;
+              a seleção não pretende esgotar essas tradições.
             </div>
           </>
         )}
@@ -1254,6 +1258,7 @@ export default function App() {
                     <section className="path-detail" key={p.id}>
                       <h2>{p.title}</h2>
                       <p>{p.description}</p>
+                      <div className="path-practice"><h3>Um roteiro para escutar melhor</h3><p>Não é preciso terminar em uma sessão. Escolha uma obra, ouça sem ler e depois retorne ao contexto. As durações são aproximadas.</p><ol>{(pathwayQuestions[p.id] || []).map(q => <li key={q}>{q}</li>)}</ol><small>{p.ids.reduce((total, id) => total + find(id).duration, 0)} min de repertório · {p.ids.filter(id => store.progress[id]?.heard).length}/{p.ids.length} obras ouvidas</small><br/><button className="link-button" onClick={() => open(find(p.ids.find(id => !store.progress[id]?.heard) || p.ids[0]))}>Continuar na próxima obra <ArrowRight size={16}/></button></div>
                       {p.ids.map((id, i) => {
                         const w = find(id);
                         return (
@@ -1298,7 +1303,7 @@ export default function App() {
               title={
                 view === 'atlas'
                   ? 'A música não anda em linha reta.'
-                  : 'Sua própria constelação.'
+                  : 'Seu acervo, suas descobertas.'
               }
               text={
                 view === 'atlas'
@@ -1308,11 +1313,13 @@ export default function App() {
             />
             <Tabs defaultValue="rede">
               <TabsList variant="line">
-                <TabsTrigger value="rede">Constelação</TabsTrigger>
+                <TabsTrigger value="rede">Relações</TabsTrigger>
                 <TabsTrigger value="tempo">Linha do tempo</TabsTrigger>
                 <TabsTrigger value="comparar">Comparar obras</TabsTrigger>
               </TabsList>
               <TabsContent value="rede">
+                <div className="atlas-orientation" aria-label="Pontos de partida no atlas"><button onClick={() => setGraphFocus('ravel')}>França · cor e movimento</button><button onClick={() => setGraphFocus('sacre')}>Rússia · ritmo e ruptura</button><button onClick={() => setGraphFocus('boulanger')}>Trajetórias de compositoras</button><button onClick={() => setGraphFocus('satie')}>Repetição e escuta atenta</button></div>
+                <p className="atlas-note">{works.length} obras · {connections.length} relações. As conexões indicam perguntas de escuta; apenas as identificadas como históricas descrevem um contexto documentado.</p>
                 <label className="graph-picker">
                   <span>Obra em foco · catálogo completo ({works.length})</span>
                   <select
@@ -1349,7 +1356,7 @@ export default function App() {
                             x2={b.x}
                             y2={b.y}
                             stroke={
-                              c.includes(graphFocus) ? '#bde790' : '#353f36'
+                              c.includes(graphFocus) ? '#ff783b' : '#45454b'
                             }
                             strokeWidth={c.includes(graphFocus) ? 1.5 : 1}
                           />
@@ -1545,7 +1552,7 @@ export default function App() {
                 onClick={() =>
                   download(
                     store,
-                    `constelacao-backup-${new Date().toISOString().slice(0, 10)}.json`,
+                    `acervo-classico-backup-${new Date().toISOString().slice(0, 10)}.json`,
                   )
                 }
               >
@@ -1620,17 +1627,19 @@ export default function App() {
               title="Ouça uma ideia acontecer."
               text="Exemplos sonoros sintetizados para tornar conceitos concretos. Não são trechos das obras."
             />
+            <SonicLab open={id => open(find(id))} />
+            <div className="section-heading"><div><span className="eyebrow">VOCABULÁRIO DE ESCUTA</span><h2>Ideias para levar ao repertório.</h2></div></div>
             <div className="concept-grid">
               {concepts.map((c, i) => (
                 <article className="concept" key={c.name}>
-                  <span className="eyebrow">CONCEITO 0{i + 1}</span>
+                  <span className="eyebrow">CONCEITO {String(i + 1).padStart(2, '0')}</span>
                   <h2>{c.name}</h2>
                   <p>{c.text}</p>
                   {c.example && (
                     <button
                       className="secondary"
                       disabled={lab === c.example}
-                      onClick={() => void synth(c.example)}
+                      onClick={() => void synth(c.example).catch(() => setMessage('Não foi possível iniciar este exemplo sonoro. Tente novamente.'))}
                     >
                       <Volume2 size={18} />
                       {lab === c.example ? 'Exemplo tocando…' : 'Ouvir exemplo'}
@@ -1675,6 +1684,7 @@ export default function App() {
           ['explorar', Compass, 'Explorar'],
           ['percursos', Route, 'Percursos'],
           ['atlas', Orbit, 'Atlas'],
+          ['laboratorio', SlidersHorizontal, 'Lab'],
           ['diario', BookOpen, 'Diário'],
         ].map(([v, Icon, label]) => {
           const I = Icon as typeof Compass;
@@ -1707,7 +1717,7 @@ export default function App() {
                 ? 'Escolha sua gravação'
                 : dialog === 'settings'
                   ? 'Seu espaço, suas preferências'
-                  : 'Sobre o Constelação'}
+                  : 'Sobre o Acervo Clássico'}
           </DialogTitle>
           <DialogDescription>
             {dialog === 'note' || dialog.startsWith('edit:')
@@ -1863,7 +1873,7 @@ export default function App() {
               <button
                 className="secondary"
                 onClick={() =>
-                  download(store, `constelacao-backup-${Date.now()}.json`)
+                  download(store, `acervo-classico-backup-${Date.now()}.json`)
                 }
               >
                 <Download size={17} /> Exportar backup completo
@@ -1902,7 +1912,7 @@ export default function App() {
                     );
                   } catch {
                     setMessage(
-                      'Arquivo inválido. Escolha um backup JSON exportado pelo Constelação.',
+                      'Arquivo inválido. Escolha um backup JSON do Acervo Clássico ou da versão anterior, Constelação.',
                     );
                   }
                   e.target.value = '';
@@ -1925,7 +1935,7 @@ export default function App() {
               <p>
                 Esta edição reúne {works.length} obras de{' '}
                 {new Set(works.map((w) => w.composer)).size} compositores e
-                compositoras dos séculos XX e XXI, {paths.length} percursos e{' '}
+                compositoras dos séculos XIX a XXI, {paths.length} percursos e{' '}
                 {concepts.length} conceitos. Todas as obras possuem um caderno
                 de contexto com fontes e propostas de escuta. O catálogo
                 permanece aberto à expansão.

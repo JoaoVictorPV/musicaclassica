@@ -30,13 +30,13 @@
 }
 :root,
 .dark {
-  --background: #101410;
-  --foreground: #f1f2e9;
-  --card: #1a201b;
-  --surface: #222a23;
-  --muted: #a1aaa0;
-  --border: #303930;
-  --lime: #c0ec92;
+  --background: #101012;
+  --foreground: #f4eee8;
+  --card: #1c1b1f;
+  --surface: #28262a;
+  --muted: #b6afb0;
+  --border: #363236;
+  --lime: #ff783b;
   --font-heading: Georgia, serif;
   color-scheme: dark;
 }

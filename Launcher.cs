@@ -27,6 +27,6 @@ class Launcher {
       string[] candidates={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),"Google","Chrome","Application","chrome.exe"),Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),"Google","Chrome","Application","chrome.exe"),Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Google","Chrome","Application","chrome.exe")};
       foreach(string chrome in candidates) if(File.Exists(chrome)){Process.Start(new ProcessStartInfo(chrome,"--app="+Site){UseShellExecute=true});return;}
       Process.Start(new ProcessStartInfo(Site){UseShellExecute=true});
-    } catch(Exception ex){MessageBox.Show(ex.Message,"Constelação",MessageBoxButtons.OK,MessageBoxIcon.Information);}
+    } catch(Exception ex){MessageBox.Show(ex.Message,"Acervo Clássico",MessageBoxButtons.OK,MessageBoxIcon.Information);}
   }
 }

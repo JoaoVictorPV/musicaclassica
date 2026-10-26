@@ -1,4 +1,6 @@
 import { additionalWorks } from './additions';
+import { frenchWorks } from './french-additions';
+import { newPaths, newConnections } from './journeys';
 
 export type Work = {
   id: string;
@@ -279,8 +281,10 @@ export const works: Work[] = [
     source: 'https://www.arvopart.ee/en/arvo-part/work/417/',
   },
   ...additionalWorks,
+  ...frenchWorks,
 ];
 export const paths = [
+  ...newPaths,
   {
     id: 'russo',
     title: 'Uma escuta russa',
@@ -361,6 +365,10 @@ export const paths = [
   },
 ];
 export const concepts = [
+  { name: 'Tons inteiros', text: 'Seis passos iguais dividem a oitava. No laboratório, compare essa coleção com a escala maior: a regularidade dos intervalos muda os pontos de referência do ouvido.', ids: ['debussy', 'messiaen'], example: '' },
+  { name: 'Paralelismo', text: 'Um desenho pode se deslocar preservando sua estrutura intervalar. Compare o movimento de acordes como blocos com uma sequência que mantém as notas de uma mesma escala.', ids: ['debussy', 'ravel'], example: '' },
+  { name: 'Transformação temática', text: 'Uma ideia reconhecível retorna com outra aparência: andamento, registro, articulação ou contexto harmônico mudam seu efeito. Reconhecer e estranhar podem acontecer ao mesmo tempo.', ids: ['berlioz', 'saintsaens', 'quarteto8'], example: '' },
+  { name: 'Orquestração', text: 'Escolher e combinar instrumentos participa da forma, não apenas da decoração. Acompanhe quem conduz, quem sustenta e como uma ideia muda ao passar entre vozes.', ids: ['ravel', 'boulanger', 'roussel'], example: '' },
   {
     name: 'Ostinato',
     text: 'Uma figura que se repete persistentemente. As camadas ao redor podem mudar enquanto ela permanece.',
@@ -411,6 +419,7 @@ export const concepts = [
   },
 ];
 export const connections = [
+  ...newConnections,
   [
     'rachmaninoff',
     'quarteto8',

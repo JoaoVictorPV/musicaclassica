@@ -1,17 +1,18 @@
-# Constelação — atlas de escuta
+# Acervo Clássico — a arte de escutar
 
-Um espaço pessoal de formação musical: Europa e diásporas, com atenção especial às tradições russas e aos contextos soviéticos, sem confundir identidades nacionais.
+Um espaço pessoal de formação musical: Europa e diásporas, com núcleos russos e franceses, sem confundir identidades nacionais. Antes chamado Constelação, agora combina carvão, laranja vibrante e tons pastel com arte vetorial responsiva.
 
 ## Edição ampliada · outubro de 2026
 
-- **24 obras e 24 compositores e compositoras**, o dobro do catálogo inicial.
-- Séculos XX e XXI, incluindo Tarnopolski, Auerbach, Saariaho e Saunders.
-- **24 cadernos de contexto**, com cinco camadas: história, organização musical, experiência de escuta, cuidado interpretativo e justificativa de curadoria.
+- **36 obras e 36 compositores e compositoras**, incluindo 12 novas entradas francesas.
+- Séculos XIX a XXI, mantendo o núcleo russo e as trajetórias contemporâneas.
+- **36 cadernos de contexto**, com cinco camadas: história, organização musical, experiência de escuta, cuidado interpretativo e justificativa de curadoria. Mais de 11 mil palavras de contexto, além dos resumos.
 - Fontes institucionais, editoriais e de compositores, separadas das propostas de interpretação.
-- Quatro percursos expandidos, 26 relações explicadas, busca, filtros, cronologia e atlas por vizinhanças.
-- Diário, favoritos, progresso e backup local preservados; oito conceitos e laboratório sonoro.
+- Oito percursos com perguntas e retomada, 44 relações explicadas, busca, filtro francês, cronologia e atlas por vizinhanças.
+- Diário, favoritos, progresso e backup local preservados; 12 conceitos e laboratório sonoro.
+- Seis experimentos A/B com velocidade, volume e parada: escalas, acordes, métrica, densidade, envelope e inversão de motivo. Quatro exemplos curtos anteriores mantidos. Síntese didática, não trechos das partituras.
 
-Os novos autores são Rachmaninoff, Roslavets, Denisov, Weinberg, Shchedrin, Tarnopolski, Auerbach, Silvestrov, Bartók, Messiaen, Saariaho e Saunders. Uma obra de cada autor integra o catálogo. Durações são aproximadas; datas de versões e revisões são explicadas nas respectivas páginas.
+Esta expansão acrescenta Ravel, Berlioz, Saint-Saëns, Fauré, Bizet, Dukas, Chausson, Lili Boulanger, Germaine Tailleferre, Poulenc, Satie e Roussel. Uma entrada por autor. Durações são aproximadas; datas de versões e revisões são explicadas nas respectivas páginas. Alguns catálogos institucionais bloquearam consulta integral: as limitações estão identificadas nas referências, sem inventar detalhes para preencher lacunas.
 
 ## Executar a partir do repositório
 
@@ -43,11 +44,11 @@ O caminho base é relativo e a navegação usa fragmentos de URL, compatíveis c
 
 ## Persistência e privacidade
 
-O diário é salvo no navegador, por origem, com a chave `constelacao:v1`. Esta expansão mantém os identificadores das 12 obras originais e o formato de backup. Dados pessoais não são enviados ao repositório. Limpar dados do navegador pode apagá-los; exporte um backup regularmente. Ao trocar de endereço local para uma hospedagem, importe o backup na nova origem. Não há sincronização entre dispositivos nem serviço de IA conectado.
+O diário é salvo no navegador, por origem, com a chave histórica `constelacao:v1`. A mudança de nome preserva os identificadores das 24 obras anteriores e o formato de backup. Dados pessoais não são enviados ao repositório. Limpar dados do navegador pode apagá-los; exporte um backup regularmente. Ao trocar de endereço local para uma hospedagem, importe o backup na nova origem. Não há sincronização entre dispositivos nem serviço de IA conectado.
 
 ## Áudio e curadoria
 
-O site não redistribui gravações comerciais. Duas obras mantêm vídeos previamente identificados; nas demais, a opção **Escolher gravação** permite buscar e usar uma interpretação disponível no YouTube. Disponibilidade e incorporação dependem do provedor. A expansão do conteúdo não significa que foram verificadas 24 gravações incorporáveis.
+O site não redistribui gravações comerciais. Duas obras mantêm vídeos previamente identificados; nas demais, a opção **Escolher gravação** permite buscar e usar uma interpretação disponível no YouTube. Disponibilidade e incorporação dependem do provedor. As 36 entradas não significam 36 gravações incorporadas. O laboratório gera sons com Web Audio, começa em volume baixo e só toca por ação do usuário. Ao trocar de experiência ou ajustar controles, a reprodução para.
 
 O conteúdo é uma edição editorial datada, não um feed automático. Informações históricas e de catálogo possuem fontes nas páginas. Exercícios, comparações e critérios de inclusão são propostas editoriais, não provas de influência nem revisão musicológica independente. O catálogo inclui tradições ucraniana, estoniana e judaica polonesa sem absorvê-las na identidade russa.
 
@@ -57,6 +58,10 @@ O conteúdo é uma edição editorial datada, não um feed automático. Informa�
 - `app/context.ts` e `app/context-additions.ts`: textos e bibliografia por obra.
 - `app/WorkContext.tsx`: leitura progressiva e referências.
 - `app/graph.ts`: vizinhanças do atlas, sem quantidade fixa de nós.
+- `app/french-additions.ts` e `app/context-french.ts`: expansão francesa e bibliografia.
+- `app/journeys.ts`: novos percursos, perguntas e relações explícitas.
+- `app/SonicLab.tsx`: seis experiências A/B, parâmetros e sequências testáveis.
+- `app/ResonanceArt.tsx` e `app/acervo.css`: identidade vetorial e layout responsivo.
 - `tests.mjs`: integridade editorial, cobertura, renderização e compatibilidade dos backups.
 
 O pacote portátil Windows anteriormente entregue contém runtime e executável. Eles **não são incluídos neste repositório**, assim como `node_modules`, arquivos de ambiente, builds gerados e dados pessoais. `Launcher.cs` e `server.cjs` preservam o código do inicializador; consulte `LEIA-ME.md` para o pacote portátil.

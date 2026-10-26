@@ -1,4 +1,4 @@
-name: Publicar Constelação no GitHub Pages
+name: Publicar Acervo Clássico no GitHub Pages
 
 on:
   push:

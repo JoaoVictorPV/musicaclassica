@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './page';
 import './globals.css';
+import './acervo.css';
 class Boundary extends React.Component<
   { children: React.ReactNode },
   { error: boolean }

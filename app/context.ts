@@ -1,4 +1,5 @@
 import { newDossiers } from './context-additions';
+import { frenchContexts } from './context-french';
 
 export type Source = { label: string; url: string };
 export type Dossier = {
@@ -12,6 +13,7 @@ export type Dossier = {
 
 export const editorialRevision = '25 de outubro de 2026';
 export const dossiers: Record<string, Dossier> = {
+  ...frenchContexts,
   sacre: {
     history:
       'A estreia parisiense de 1913 reuniu a música de Stravinsky, os Ballets Russes de Diaghilev, a coreografia de Nijinsky e o projeto visual associado a Nicholas Roerich. Portanto, trata-se também de uma criação cênica coletiva. A célebre agitação da estreia pertence à história da recepção: não resume a partitura nem explica, sozinha, a experiência de ouvi-la hoje.',

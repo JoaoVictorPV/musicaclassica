@@ -22,6 +22,6 @@ const server = http.createServer((req,res)=>{
   });
 });
 server.on('error',err=>{console.error(err.message);process.exit(1)});
-server.listen(port,'127.0.0.1',()=>console.log('Constelação: http://127.0.0.1:'+port));
+server.listen(port,'127.0.0.1',()=>console.log('Acervo Clássico: http://127.0.0.1:'+port));
 // Browser heartbeats keep the server alive; after all tabs close it exits itself.
 setInterval(()=>{if(Date.now()-lastRequest>15*60*1000)server.close(()=>process.exit(0));},60000).unref();
