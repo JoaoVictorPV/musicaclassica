@@ -287,8 +287,8 @@ export const paths = [
   ...newPaths,
   {
     id: 'russo',
-    title: 'Uma escuta russa',
-    subtitle: 'Ruptura, poder e interioridade',
+    title: 'Música russa e diásporas',
+    subtitle: 'Contextos imperiais, soviéticos e contemporâneos',
     description:
       'Do Império Russo às experiências soviéticas e à diáspora contemporânea. Trajetórias distintas, não uma identidade única.',
     ids: [
@@ -311,10 +311,10 @@ export const paths = [
   },
   {
     id: 'ritmo',
-    title: 'O ritmo toma a palavra',
-    subtitle: 'Ouvir com o corpo',
+    title: 'Ritmo e pulsação',
+    subtitle: 'Pulso, acento e métrica',
     description:
-      'Pulso, acento, dança e máquina. A energia atravessa formações e épocas.',
+      'Compare a pulsação, os acentos e os padrões repetidos em diferentes formações instrumentais.',
     ids: [
       'fabrica',
       'sacre',
@@ -327,10 +327,10 @@ export const paths = [
   },
   {
     id: 'textura',
-    title: 'Dentro do som',
-    subtitle: 'Quando o timbre constrói a forma',
+    title: 'Timbre e textura',
+    subtitle: 'Instrumentação e densidade',
     description:
-      'Correntes, nuvens e massas. Relações que não dependem de uma melodia.',
+      'Observe mudanças de instrumentação, registro e densidade para identificar seções e contrastes.',
     ids: [
       'debussy',
       'ligeti',
@@ -347,7 +347,7 @@ export const paths = [
   },
   {
     id: 'memoria',
-    title: 'O passado ainda soa',
+    title: 'Memória e citação',
     subtitle: 'Citação, retorno e transformação',
     description:
       'Citação, duração e lembrança em trajetórias russas, polonesas, ucranianas, bálticas e francesas. Comparar não é igualar.',

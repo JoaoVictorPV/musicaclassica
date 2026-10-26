@@ -99,3 +99,24 @@ input, textarea { background: #161417; }
 }
 @media(max-width: 360px) { .header-actions { gap: 4px; }.brand > span { font-size: 1.18rem; }.brand-caption { font-size: .38rem; }.brand { gap: 8px; }.topbar { padding-inline: 14px; }.art { height: 160px; } }
 @media(prefers-reduced-motion: reduce) { .sound-visual .sounding { animation: none; } }
+
+/* Interface editorial: títulos descritivos e arte sem chamadas promocionais. */
+.welcome { display: grid; grid-template-columns: minmax(0,1fr) minmax(240px,.8fr); min-height: 0; margin: 0; padding: 20px 0; gap: 32px; }
+.welcome > div:first-child { width: auto; }
+.welcome h1 { font-size: clamp(1.7rem,2.5vw,2.5rem); letter-spacing: -.035em; }
+.welcome p { max-width: 600px; margin-top: 16px; font-size: .94rem; }
+.resonance-art { width: 100%; max-width: 340px; margin: 0 auto; }
+.page-title h1 { font-size: clamp(1.8rem,3vw,3rem); }
+.studio-intro h2 { font-size: 1.6rem; }
+.featured { min-height: 280px; }
+.feature-copy { margin-top: 25px; }
+.path-teaser h2 { font-size: 2rem; }
+@media(max-width: 780px) {
+  .welcome { grid-template-columns: 1fr; gap: 0; }
+  .resonance-art { max-width: 260px; }
+  .welcome p { font-size: .85rem; }
+  .path-teaser { display: flex; flex-direction: column; gap: 16px; }
+  .path-teaser h2, .path-teaser p { margin: 0; }
+  .path-teaser .mini-timeline { width: 100%; }
+  .path-teaser .between { width: 100%; margin-top: 0; }
+}

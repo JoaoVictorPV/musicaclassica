@@ -1,4 +1,4 @@
-# Acervo Clássico — a arte de escutar
+# Acervo Clássico
 
 Um espaço pessoal de formação musical: Europa e diásporas, com núcleos russos e franceses, sem confundir identidades nacionais. Antes chamado Constelação, agora combina carvão, laranja vibrante e tons pastel com arte vetorial responsiva.
 

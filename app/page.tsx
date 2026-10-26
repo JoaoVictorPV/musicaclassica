@@ -715,7 +715,7 @@ export default function App() {
         <a className="brand" href="#agora" onClick={() => go('agora')}>
           <Mark />
           <span>
-            Acervo Clássico<span className="brand-caption">OUVIR. DESCOBRIR. APROFUNDAR.</span>
+            Acervo Clássico
           </span>
         </a>
         <nav aria-label="Navegação principal">
@@ -760,28 +760,14 @@ export default function App() {
       <main id="content" className="content">
         {view === 'agora' && (
           <>
-            <div className="eyebrow intro-line">
-              <span>
-                <span className="status-dot" /> SEU ESPAÇO DE EXPLORAÇÃO MUSICAL
-              </span>
-              <span>EUROPA & DIÁSPORAS · SÉCULOS XIX–XXI</span>
-            </div>
             <div className="welcome">
               <div>
-                <h1>
-                  A música permanece.
-                  <br />
-                  <em>Seu ouvido se transforma.</em>
-                </h1>
-                <p>
-                  Da Rússia à França, um acervo de encontros.
-                  <br />
-                  Escute de perto. Descubra o que ainda não ouviu.
-                </p>
+                <h1>Catálogo musical</h1>
+                <p>Selecione uma obra para consultar o contexto e o guia de escuta. Use os percursos para estudar por tema e o diário para registrar suas observações.</p>
               </div>
               <ResonanceArt />
             </div>
-            <div className="acervo-strip"><span><strong>{works.length}</strong> obras · {works.length} autores</span><span><strong>{paths.length}</strong> percursos de descoberta</span><span><strong>06</strong> experiências A/B</span><button className="link-button" onClick={() => go('minha')}>Meu acervo <ArrowUpRight size={17}/></button></div>
+            <div className="acervo-strip"><span><strong>{works.length}</strong> obras · {works.length} autores</span><span><strong>{paths.length}</strong> percursos</span><span><strong>06</strong> experiências A/B</span><button className="link-button" onClick={() => go('minha')}>Meu acervo <ArrowUpRight size={17}/></button></div>
             {(store.notes.length > 0 || heard > 0) && (
               <div className="return-strip">
                 <button
@@ -812,7 +798,7 @@ export default function App() {
               >
                 <div className="feature-top">
                   <span className="pill">
-                    {heard ? 'PRÓXIMA DESCOBERTA' : 'SEU PRIMEIRO ENCONTRO'}
+                    OBRA SUGERIDA
                   </span>
                   <span>
                     {String(works.indexOf(recommendation) + 1).padStart(2, '0')}{' '}
@@ -825,7 +811,7 @@ export default function App() {
                     {recommendation.year}
                   </span>
                   <h2>{recommendation.title}</h2>
-                  <p>{recommendation.invitation}</p>
+                  <p>{recommendation.tags.join(' · ')}</p>
                   <div className="feature-actions">
                     <button
                       className="primary"
@@ -841,7 +827,6 @@ export default function App() {
                 </div>
                 <div className="feature-wave">
                   <SoundLines color={recommendation.color} large />
-                  <span>OUVIR · PERCEBER · DESCOBRIR</span>
                 </div>
               </section>
               <aside className="path-teaser">
@@ -849,16 +834,8 @@ export default function App() {
                 <span className="path-number">
                   01<span> / {String(paths.length).padStart(2, '0')}</span>
                 </span>
-                <h2>
-                  A França em
-                  <br />
-                  <em>muitas cores.</em>
-                </h2>
-                <p>
-                  Uma nova ala do seu acervo.
-                  <br />
-                  De Berlioz às invenções do século XX.
-                </p>
+                <h2>{paths[0].title}</h2>
+                <p>Compare a instrumentação e a organização das obras francesas dos séculos XIX e XX.</p>
                 <div className="mini-timeline">
                   <i />
                   <span />
@@ -872,7 +849,7 @@ export default function App() {
                   <span>{paths[0].ids.length} obras · escuta orientada</span>
                   <button
                     className="round"
-                    aria-label="Abrir percurso A França em muitas cores"
+                    aria-label={`Abrir percurso ${paths[0].title}`}
                     onClick={() => {
                       setActivePath('frances');
                       go('percursos');
@@ -885,8 +862,7 @@ export default function App() {
             </div>
             <div className="section-heading">
               <div>
-                <span className="eyebrow">NOVAS ENTRADAS · EDIÇÃO FRANCESA</span>
-                <h2>Outras cores. Novas perguntas.</h2>
+                <h2>Obras francesas</h2>
               </div>
               <button className="link-button" onClick={() => go('explorar')}>
                 Explorar o repertório <ArrowRight size={18} />
@@ -895,28 +871,13 @@ export default function App() {
             <div className="work-grid">
               {['ravel', 'boulanger', 'poulenc', 'tailleferre'].map(id => card(find(id)))}
             </div>
-            <div className="question-strip">
-              <span className="round">
-                <Orbit size={24} />
-              </span>
-              <div>
-                <span className="eyebrow">
-                  UMA PERGUNTA PARA LEVAR À ESCUTA
-                </span>
-                <h3>Você não gostou — ou ainda não encontrou o que ouvir?</h3>
-              </div>
-              <button className="link-button" onClick={() => note(store.last)}>
-                Anotar uma impressão <Plus size={18} />
-              </button>
-            </div>
           </>
         )}
         {view === 'explorar' && (
           <>
             <PageTitle
-              kicker="O CORPUS VIVO"
-              title="Encontre sua próxima escuta."
-              text={`${works.length} obras · ${new Set(works.map((w) => w.composer)).size} compositores e compositoras. Europa e diásporas, com núcleos russos e franceses: trajetórias distintas, escutas em diálogo.`}
+              title="Repertório"
+              text={`Pesquise entre ${works.length} obras por título, compositor ou conceito. Use os filtros para selecionar linguagem musical e região.`}
             />
             <div className="filters">
               <label className="search-box">
@@ -1010,7 +971,7 @@ export default function App() {
                   }
                 >
                   <SoundLines color={current.color} />
-                  <h2>{current.invitation}</h2>
+                  <h2>Gravação da obra</h2>
                   <button className="primary" onClick={() => play(current)}>
                     <Play size={18} /> Ouvir uma gravação
                   </button>
@@ -1040,7 +1001,7 @@ export default function App() {
                   <TabsContent value="encontro">
                     <div className="essay">
                       <span className="eyebrow">01 · EXPERIÊNCIA</span>
-                      <h2>Primeiro, apenas ouça.</h2>
+                      <h2>Orientações iniciais</h2>
                       <p>
                         Permita-se não reconhecer tudo. Escolha um trecho ou um
                         movimento e mantenha a atenção no som. Não é necessário
@@ -1058,7 +1019,7 @@ export default function App() {
                   <TabsContent value="orientacao">
                     <div className="essay">
                       <span className="eyebrow">02 · ORIENTAÇÃO</span>
-                      <h2>Três coisas para perceber.</h2>
+                      <h2>Roteiro de escuta</h2>
                       <div className="prompts">
                         {current.listen.map((s, i) => (
                           <div key={s}>
@@ -1075,7 +1036,7 @@ export default function App() {
                         className="secondary"
                         onClick={() => note(current.id)}
                       >
-                        <Plus size={16} /> Anotar uma descoberta
+                        <Plus size={16} /> Adicionar anotação
                       </button>
                     </div>
                   </TabsContent>
@@ -1085,7 +1046,7 @@ export default function App() {
                   <TabsContent value="conexoes">
                     <div className="essay">
                       <span className="eyebrow">04 · COMPARAÇÃO</span>
-                      <h2>Continue por outra pergunta.</h2>
+                      <h2>Obras relacionadas</h2>
                       {connections
                         .filter(
                           (c) => c[0] === current.id || c[1] === current.id,
@@ -1112,12 +1073,7 @@ export default function App() {
                 </Tabs>
               </div>
               <aside className="study-panel">
-                <span className="eyebrow">SUA RELAÇÃO COM A OBRA</span>
-                <h3>
-                  Gosto e compreensão
-                  <br />
-                  seguem caminhos próprios.
-                </h3>
+                <h3>Registro de escuta</h3>
                 {[
                   ['heard', 'Já ouvi'],
                   ['understood', 'Consigo explicar o que ouvi'],
@@ -1209,9 +1165,8 @@ export default function App() {
         {view === 'percursos' && (
           <>
             <PageTitle
-              kicker="CAMINHOS POSSÍVEIS"
-              title="Deixe uma pergunta conduzir."
-              text="Percursos curados, com liberdade para sair do caminho e voltar quando quiser."
+              title="Percursos"
+              text="Selecione um tema para ver a sequência de obras, as perguntas de estudo e seu progresso."
             />
             {!activePath ? (
               <div className="paths-grid">
@@ -1258,7 +1213,7 @@ export default function App() {
                     <section className="path-detail" key={p.id}>
                       <h2>{p.title}</h2>
                       <p>{p.description}</p>
-                      <div className="path-practice"><h3>Um roteiro para escutar melhor</h3><p>Não é preciso terminar em uma sessão. Escolha uma obra, ouça sem ler e depois retorne ao contexto. As durações são aproximadas.</p><ol>{(pathwayQuestions[p.id] || []).map(q => <li key={q}>{q}</li>)}</ol><small>{p.ids.reduce((total, id) => total + find(id).duration, 0)} min de repertório · {p.ids.filter(id => store.progress[id]?.heard).length}/{p.ids.length} obras ouvidas</small><br/><button className="link-button" onClick={() => open(find(p.ids.find(id => !store.progress[id]?.heard) || p.ids[0]))}>Continuar na próxima obra <ArrowRight size={16}/></button></div>
+                      <div className="path-practice"><h3>Roteiro de estudo</h3><p>Não é preciso terminar em uma sessão. Escolha uma obra, ouça sem ler e depois retorne ao contexto. As durações são aproximadas.</p><ol>{(pathwayQuestions[p.id] || []).map(q => <li key={q}>{q}</li>)}</ol><small>{p.ids.reduce((total, id) => total + find(id).duration, 0)} min de repertório · {p.ids.filter(id => store.progress[id]?.heard).length}/{p.ids.length} obras ouvidas</small><br/><button className="link-button" onClick={() => open(find(p.ids.find(id => !store.progress[id]?.heard) || p.ids[0]))}>Continuar na próxima obra <ArrowRight size={16}/></button></div>
                       {p.ids.map((id, i) => {
                         const w = find(id);
                         return (
@@ -1279,7 +1234,7 @@ export default function App() {
                                 {w.composer} · {w.year}
                               </small>
                               <h3>{w.title}</h3>
-                              <p>{w.invitation}</p>
+                              <p>{w.tags.join(' · ')}</p>
                             </div>
                             <span>{w.duration} min</span>
                             <ArrowUpRight size={22} />
@@ -1295,20 +1250,15 @@ export default function App() {
         {(view === 'atlas' || view === 'minha') && (
           <>
             <PageTitle
-              kicker={
-                view === 'atlas'
-                  ? 'IDEIAS EM RELAÇÃO'
-                  : 'SUA FORMAÇÃO, EM MOVIMENTO'
-              }
               title={
                 view === 'atlas'
-                  ? 'A música não anda em linha reta.'
-                  : 'Seu acervo, suas descobertas.'
+                  ? 'Atlas'
+                  : 'Meu acervo'
               }
               text={
                 view === 'atlas'
                   ? 'Escolha uma obra e explore sua vizinhança. As linhas representam relações editoriais explicadas, não necessariamente influências históricas.'
-                  : `${heard} obras ouvidas · ${store.notes.length} percepções registradas · ${collection.length} obras salvas`
+                  : `${heard} obras ouvidas · ${store.notes.length} anotações registradas · ${collection.length} obras salvas`
               }
             />
             <Tabs defaultValue="rede">
@@ -1318,7 +1268,7 @@ export default function App() {
                 <TabsTrigger value="comparar">Comparar obras</TabsTrigger>
               </TabsList>
               <TabsContent value="rede">
-                <div className="atlas-orientation" aria-label="Pontos de partida no atlas"><button onClick={() => setGraphFocus('ravel')}>França · cor e movimento</button><button onClick={() => setGraphFocus('sacre')}>Rússia · ritmo e ruptura</button><button onClick={() => setGraphFocus('boulanger')}>Trajetórias de compositoras</button><button onClick={() => setGraphFocus('satie')}>Repetição e escuta atenta</button></div>
+                <div className="atlas-orientation" aria-label="Pontos de partida no atlas"><button onClick={() => setGraphFocus('ravel')}>Ravel</button><button onClick={() => setGraphFocus('sacre')}>Stravinsky</button><button onClick={() => setGraphFocus('boulanger')}>Boulanger</button><button onClick={() => setGraphFocus('satie')}>Satie</button></div>
                 <p className="atlas-note">{works.length} obras · {connections.length} relações. As conexões indicam perguntas de escuta; apenas as identificadas como históricas descrevem um contexto documentado.</p>
                 <label className="graph-picker">
                   <span>Obra em foco · catálogo completo ({works.length})</span>
@@ -1474,7 +1424,7 @@ export default function App() {
                             {w.year} · {w.region}
                           </small>
                           <h2>{w.title}</h2>
-                          <p>{w.invitation}</p>
+                          <p>{w.composer}</p>
                           <div className="tags">
                             {w.tags.map((t) => (
                               <span key={t}>{t}</span>
@@ -1519,7 +1469,7 @@ export default function App() {
                   <div className="work-grid">{collection.map(card)}</div>
                 ) : (
                   <Empty
-                    title="Sua coleção começa com curiosidade."
+                    title="Nenhuma obra salva"
                     text="Use o marcador em uma obra para guardá-la aqui."
                   />
                 )}
@@ -1530,22 +1480,21 @@ export default function App() {
         {view === 'diario' && (
           <>
             <PageTitle
-              kicker="A MEMÓRIA DO SEU OUVIDO"
-              title="Diário de escuta."
-              text="Impressões, dúvidas e descobertas. Seu gosto pode mudar; suas perguntas também."
+              title="Diário de escuta"
+              text="Crie, edite e pesquise anotações sobre as obras. Exporte um backup para guardar uma cópia dos seus registros."
             />
             <div className="filters">
               <label className="search-box">
                 <Search size={19} />
                 <input
                   aria-label="Pesquisar diário"
-                  placeholder="Pesquisar suas percepções…"
+                  placeholder="Pesquisar anotações…"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                 />
               </label>
               <button className="primary" onClick={() => note(store.last)}>
-                <Plus size={17} /> Nova percepção
+                <Plus size={17} /> Nova anotação
               </button>
               <button
                 className="secondary"
@@ -1608,14 +1557,14 @@ export default function App() {
                       setDialog(`edit:${n.id}`);
                     }}
                   >
-                    Editar percepção
+                    Editar anotação
                   </button>
                 </article>
               ))}
             {!store.notes.length && (
               <Empty
-                title="O que você ouviu hoje?"
-                text="Uma sensação, uma mudança de textura, uma pergunta. Não precisa ser uma análise para merecer registro."
+                title="Nenhuma anotação"
+                text="Use o botão Nova anotação para registrar uma observação e associá-la a uma obra."
               />
             )}
           </>
@@ -1623,12 +1572,11 @@ export default function App() {
         {view === 'laboratorio' && (
           <>
             <PageTitle
-              kicker="PEQUENOS EXPERIMENTOS, NOVAS PERCEPÇÕES"
-              title="Ouça uma ideia acontecer."
-              text="Exemplos sonoros sintetizados para tornar conceitos concretos. Não são trechos das obras."
+              title="Laboratório sonoro"
+              text="Compare os exemplos A e B e ajuste velocidade e volume. Os sons são sintetizados, não trechos das obras."
             />
             <SonicLab open={id => open(find(id))} />
-            <div className="section-heading"><div><span className="eyebrow">VOCABULÁRIO DE ESCUTA</span><h2>Ideias para levar ao repertório.</h2></div></div>
+            <div className="section-heading"><h2>Conceitos musicais</h2></div>
             <div className="concept-grid">
               {concepts.map((c, i) => (
                 <article className="concept" key={c.name}>
@@ -1665,7 +1613,7 @@ export default function App() {
         <footer>
           <div>
             <Mark small />
-            <span>Um atlas para construir seu ouvido.</span>
+            <span>Acervo Clássico</span>
           </div>
           <button className="text-button" onClick={() => go('laboratorio')}>
             Laboratório sonoro <ArrowUpRight size={15} />
@@ -1712,7 +1660,7 @@ export default function App() {
         <DialogContent className="app-dialog">
           <DialogTitle>
             {dialog === 'note' || dialog.startsWith('edit:')
-              ? 'Uma percepção para guardar'
+              ? 'Nova anotação'
               : dialog === 'video'
                 ? 'Escolha sua gravação'
                 : dialog === 'settings'
@@ -1751,7 +1699,7 @@ export default function App() {
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
                 placeholder="O que chamou sua atenção?"
-                aria-label="Texto da percepção"
+                aria-label="Texto da anotação"
               />
               <div className="between">
                 <span className="muted">{draft.length} caracteres</span>
@@ -1783,7 +1731,7 @@ export default function App() {
                     } else saveNote();
                   }}
                 >
-                  <Check size={17} /> Guardar percepção
+                  <Check size={17} /> Salvar anotação
                 </button>
               </div>
             </>
@@ -1974,17 +1922,14 @@ export default function App() {
   );
 }
 function PageTitle({
-  kicker,
   title,
   text,
 }: {
-  kicker: string;
   title: string;
   text: string;
 }) {
   return (
     <div className="page-title">
-      <span className="eyebrow">{kicker}</span>
       <h1>{title}</h1>
       <p>{text}</p>
     </div>

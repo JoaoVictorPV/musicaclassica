@@ -146,6 +146,11 @@ try {
   const html = renderToString(React.createElement(App));
   assert.ok(html.includes('Iniciar escuta guiada'));
   assert.ok(html.includes('Acervo Clássico'));
+  assert.ok(html.includes('Catálogo musical'));
+  assert.ok(html.includes('Repertório francês'));
+  for (const slogan of ['A música permanece', 'Seu ouvido se transforma', 'Você não gostou', 'OUVIR · PERCEBER · DESCOBRIR', 'Um atlas para construir seu ouvido']) {
+    assert.ok(!html.includes(slogan), `Slogan removido não deve voltar: ${slogan}`);
+  }
   assert.ok(validBackup({ ...backup, last: 'boulanger', progress: { boulanger: {heard: true} } }));
   assert.ok(html.includes('A sagração da primavera'));
   assert.ok(!html.includes('Building your site'));

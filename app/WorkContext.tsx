@@ -15,17 +15,17 @@ const sections: {
   },
   {
     key: 'construction',
-    title: 'Como se organiza a experiência',
+    title: 'Organização musical',
     label: 'Ficha e leitura musical',
   },
   {
     key: 'listening',
-    title: 'Uma experiência para a próxima escuta',
+    title: 'Exercício de escuta',
     label: 'Proposta editorial',
   },
   {
     key: 'perspective',
-    title: 'O que não reduzir a uma explicação',
+    title: 'Cuidados de interpretação',
     label: 'Cuidado interpretativo',
   },
   {
@@ -55,8 +55,7 @@ export default function WorkContext({ work }: { work: Work }) {
       className="essay context-dossier"
       aria-label={`Contexto de ${work.title}`}
     >
-      <span className="eyebrow">03 · CADERNO DE CONTEXTO</span>
-      <h2>Escutar com mais camadas.</h2>
+      <h2>Contexto da obra</h2>
       <p className="context-intro">{work.context}</p>
       <div className="context-toolbar">
         <span>
@@ -75,7 +74,7 @@ export default function WorkContext({ work }: { work: Work }) {
         </button>
       </div>
       <p className="context-legend">
-        Leia no seu ritmo. Os dados históricos se apoiam nas fontes abaixo;
+        Os dados históricos se apoiam nas fontes abaixo;
         propostas de escuta, comparações e critérios de seleção são leituras
         editoriais, não respostas obrigatórias.
       </p>
@@ -137,7 +136,6 @@ export default function WorkContext({ work }: { work: Work }) {
         })}
       </div>
       <footer className="context-sources">
-        <span className="eyebrow">CONTINUE A PESQUISA</span>
         <h3>Fontes e documentação</h3>
         <ol>
           {dossier.sources.map((source) => (
